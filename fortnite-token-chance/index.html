@@ -241,11 +241,26 @@ footer a:hover{color:var(--accent)}
 @supports (scrollbar-width:thin){
   *{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 }
+
+/* Shared tool navigation */
+header{display:flex;align-items:center;flex-wrap:wrap;gap:14px 22px}
+header nav{display:flex;flex-wrap:wrap;gap:10px 16px;margin-left:auto;font-size:14px}
+header nav a{color:var(--text-2);white-space:nowrap}
+header nav a.on{color:var(--accent);font-weight:600}
+@media(max-width:640px){header nav{width:100%;margin-left:0}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><a class="logo" href="/">FortniteOdds</a></header>
+<header><a class="logo" href="/">FortniteOdds</a>
+<nav>
+  <a href="/">Drop rates</a>
+  <a href="/fortnite-treasure-hour/">Treasure Hour</a>
+  <a href="/fortnite-token-chance/" class="on" aria-current="page">Token calculator</a>
+  <a href="/fortnite-xp-calculator/">XP calculator</a>
+  <a href="/fortnite-chest-tracker/">Chest tracker</a>
+</nav>
+</header>
 <main>
 <h1>Pirate Token Chance Calculator</h1>
 <p>Pirate Shop Access drops from 1 in 137,500 treasure chests. This calculator turns that rate into the number that actually matters: your chance of getting at least one token from the chests you will really open before the season ends on December 5, 2026.</p>
