@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,follow">
-<title>Token Chance Calculator - FortniteOdds</title>
+<title>Pirate Token Chance Calculator - FortniteOdds</title>
+<meta name="description" content="Enter the chests you actually open and see your real chance of getting Pirate Shop Access, at 1 in 137,500 or boosted 1.5x in a Treasure Hour. Chests needed for 50% and 90%.">
+<link rel="canonical" href="https://fortniteodds.xyz/fortnite-token-chance/">
 <style>
 /* ============================================================
    FortniteOdds — self-contained stylesheet
@@ -246,9 +247,152 @@ footer a:hover{color:var(--accent)}
 <div class="wrap">
 <header><a class="logo" href="/">FortniteOdds</a></header>
 <main>
-<h1>Token Chance Calculator</h1>
-<p>Coming soon</p>
+<h1>Pirate Token Chance Calculator</h1>
+<p>Pirate Shop Access drops from 1 in 137,500 treasure chests. This calculator turns that rate into the number that actually matters: your chance of getting at least one token from the chests you will really open before the season ends on December 5, 2026.</p>
+
+<div class="qa">
+<h2>Quick answer</h2>
+<ul>
+<li><strong>1 in 137,500</strong> chests per roll — 0.00073% each.</li>
+<li><strong>~95,300 chests</strong> for a 50% chance, <strong>~316,600</strong> for 90%.</li>
+<li>During a Treasure Hour at 1.5x the rate becomes 1 in 91,667, so 50% falls to <strong>~63,500 chests</strong>.</li>
+<li>No pity timer. An empty chest never improves the next roll.</li>
+</ul>
+</div>
+
+<h2 id="calculator">Calculate your real chance</h2>
+<div class="field">
+<label for="chests">Chests you open per match</label>
+<input id="chests" type="number" min="0" max="200" step="1" value="15" inputmode="numeric">
+</div>
+<div class="field">
+<label for="matches">Matches per day</label>
+<input id="matches" type="number" min="0" max="100" step="1" value="5" inputmode="numeric">
+</div>
+<div class="field">
+<label for="days">Days you will keep playing (season ends Dec 5)</label>
+<input id="days" type="number" min="0" max="365" step="1" value="22" inputmode="numeric">
+</div>
+<div class="field">
+<label for="mode">Drop rate to use</label>
+<select id="mode">
+<option value="137500">Normal chest — 1 in 137,500</option>
+<option value="91667">Treasure Hour 1.5x — 1 in 91,667</option>
+<option value="68750">Treasure Hour 2x — 1 in 68,750</option>
+</select>
+</div>
+
+<div class="result" aria-live="polite">
+<span class="mu">Chance of at least one Pirate Shop Token</span>
+<strong id="pct">—</strong>
+<span class="mu" id="detail"></span>
+</div>
+
+<div class="notice" id="gap"></div>
+
+<p class="mu">Chests per match is your own estimate, not an Epic figure. The maths assumes every chest is an independent roll at the same rate.</p>
+
+<h2>Chests needed for 50% and 90%</h2>
+<p>This is the column most loot guides leave out. The average number of chests (the drop rate itself) is where you cross <strong>63%</strong>, not where it becomes likely — the two numbers are different.</p>
+<table>
+<thead><tr><th>Reward</th><th>Drop rate</th><th>Chests for 50%</th><th>Chests for 90%</th></tr></thead>
+<tbody>
+<tr><td>Pirate Shop Access</td><td>1 in 137,500</td><td>~95,300</td><td>~316,600</td></tr>
+<tr><td>Weekly Gold Outfit</td><td>1 in 1,562,500</td><td>~1,083,000</td><td>~3,598,000</td></tr>
+<tr><td>Vehicle / Decal</td><td>1 in 7,813</td><td>~5,415</td><td>~17,990</td></tr>
+<tr><td>Pickaxe / Back Bling</td><td>1 in 568</td><td>~394</td><td>~1,308</td></tr>
+<tr><td>Jam Track</td><td>1 in 391</td><td>~271</td><td>~900</td></tr>
+<tr><td>Loading Screen</td><td>1 in 272</td><td>~188</td><td>~626</td></tr>
+<tr><td>Gizmo</td><td>1 in 127</td><td>~88</td><td>~292</td></tr>
+</tbody>
+</table>
+<p class="mu">Drop rates as published by Epic on November 7, 2026. The 50% / 90% columns are our own calculation from those rates.</p>
+
+<h2>Treasure Hour changes the maths</h2>
+<p>The multiplier applies to the token, not just to the filler rewards. That is the single most valuable thing about the window — and it is why the queue of players opening chests spikes on Saturdays.</p>
+<table>
+<thead><tr><th>Scenario</th><th>Token rate</th><th>Chests for 50%</th><th>Chests for 90%</th></tr></thead>
+<tbody>
+<tr><td>Normal chest</td><td>1 in 137,500</td><td>~95,300</td><td>~316,600</td></tr>
+<tr><td>Treasure Hour, 1.5x</td><td>1 in 91,667</td><td>~63,500</td><td>~211,100</td></tr>
+<tr><td>Treasure Hour, 2x</td><td>1 in 68,750</td><td>~47,650</td><td>~158,300</td></tr>
+</tbody>
+</table>
+<p><a href="/fortnite-treasure-hour/">See the next Treasure Hour in your timezone →</a> The next window is Saturday, November 14, 2026 at 2:00–4:00 PM ET and 9:00–11:00 PM ET, both 2 hours long. Unless Epic announces otherwise, plan on <strong>1.5x</strong>.</p>
+
+<h2>Pirate token odds: what the formula is doing</h2>
+<p>The chance of at least one drop from n chests is the complement of missing every time:</p>
+<p><code>P = 1 − (1 − 1/137,500)<sup>n</sup></code></p>
+<p>It is a curve, not a line. The first 10,000 chests move you about 7%. The next 85,000 move you another 43%. That is why "just keep opening" feels like nothing is happening for hours: it is, mathematically, nothing happening.</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>What are the Pirate token odds per chest?</h3>
+<p>1 in 137,500, or 0.00073%. During a Treasure Hour at 1.5x it is 1 in 91,667 (0.0011%).</p>
+
+<h3>Is the drop rate per chest or per match?</h3>
+<p>Per chest. A match with 20 chests gives you 20 separate rolls at 1 in 137,500 — the calculator multiplies out to that total.</p>
+
+<h3>Can I buy Pirate Shop Access?</h3>
+<p>No. There is no shop listing, no bundle and no legitimate third-party sale. Anything offering to sell you the token or "guarantee" the drop is a scam.</p>
+
+<h3>Is there a free item shop token for it?</h3>
+<p>No. The only route in is the chest drop. Epic has not given the token away through the item shop, a code, or a creator promotion.</p>
+
+<h3>Does my chest counter reset?</h3>
+<p>There is no counter to reset — the game does not track failed attempts. Each chest is rolled independently, so a bad streak carries no debt and no credit.</p>
+
+<h3>How many chests do I need before the season ends?</h3>
+<p>The season ends December 5, 2026. At 15 chests per match and 5 matches a day you get about 75 chests a day — roughly 1,650 over the remaining three weeks, which is a 1.2% chance. That is the honest number, and it is exactly why the Treasure Hour window is worth planning around.</p>
+
+<div class="cards">
+<div class="card">
+<h3>Full drop rate table</h3>
+<p>All seven reward tiers from Epic, with the odds and the chests needed for a 50% shot.</p>
+<a href="/">Back to the drop rates →</a>
+</div>
+<div class="card">
+<h3>Treasure Hour timer</h3>
+<p>Next window in 10 timezones, plus every remaining Saturday this season.</p>
+<a href="/fortnite-treasure-hour/">Open the timer →</a>
+</div>
+</div>
 </main>
+<script>
+(function(){
+  var c=document.getElementById('chests'),m=document.getElementById('matches'),
+      d=document.getElementById('days'),s=document.getElementById('mode'),
+      pct=document.getElementById('pct'),detail=document.getElementById('detail'),
+      gap=document.getElementById('gap');
+  function fmtNum(n){return Math.round(n).toLocaleString('en-US')}
+  function fmtPct(p){
+    var v=p*100;
+    if(v<=0)return '0%';
+    if(v>=1)return v.toFixed(2)+'%';
+    if(v>=0.01)return v.toFixed(3)+'%';
+    return v.toFixed(4)+'%';
+  }
+  function update(){
+    var per=Math.max(0,+c.value||0),mpd=Math.max(0,+m.value||0),
+        dys=Math.max(0,+d.value||0),rate=1/(+s.value);
+    var n=per*mpd*dys,p=1-Math.exp(n*Math.log1p(-rate));
+    pct.textContent=fmtPct(p);
+    detail.textContent=fmtNum(n)+' chests · 1 in '+fmtNum(1/rate)+' each';
+    var need50=Math.log(0.5)/Math.log1p(-rate),need90=Math.log(0.1)/Math.log1p(-rate);
+    var perDay=Math.max(1,per*mpd);
+    if(n<need50){
+      gap.innerHTML='At this pace you need <strong>'+fmtNum(need50-n)+'</strong> more chests — about <strong>'+Math.ceil((need50-n)/perDay)+'</strong> more days — to reach a 50% chance.';
+    }else if(n<need90){
+      gap.innerHTML='You are past the 50% mark. <strong>'+fmtNum(need90-n)+'</strong> more chests takes you to 90%.';
+    }else{
+      gap.innerHTML='Past a 90% chance. About <strong>'+fmtPct(1-p)+'</strong> of players opening this many chests would still have nothing.';
+    }
+  }
+  [c,m,d].forEach(function(el){el.addEventListener('input',update)});
+  s.addEventListener('change',update);
+  update();
+})();
+</script>
 </div>
 </body>
 </html>
