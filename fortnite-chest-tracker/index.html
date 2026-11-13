@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fortnite Chest Tracker: Chest Counter &amp; Spawn Map (Nov 2026)</title>
+<meta name="description" content="Free Fortnite chest tracker: count chests you open each match, see how many spawn per POI, learn the chest types, and where to find your official total.">
+<link rel="canonical" href="https://fortniteodds.xyz/fortnite-chest-tracker/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FortniteOdds">
+<meta property="og:url" content="https://fortniteodds.xyz/fortnite-chest-tracker/">
+<meta property="og:title" content="Fortnite Chest Tracker: Chest Counter &amp; Spawn Map">
+<meta property="og:description" content="Count the chests you open each match, and see how many chests spawn at each POI this season.">
+<style>
+:root{--bg:#0b1220;--panel:#131c2e;--panel2:#1a2337;--line:#26324a;--tx:#e6edf7;--mu:#93a2bd;--acc:#5eead4;--acc2:#4ade80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:rgba(11,18,32,.92);position:sticky;top:0;z-index:9}
+header .wrap{display:flex;align-items:center;gap:18px;height:56px}
+.brand{font-weight:700;white-space:nowrap}.brand span{color:var(--acc)}
+nav{display:flex;gap:14px;font-size:14px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--mu);white-space:nowrap}nav a.on{color:var(--acc);font-weight:600}
+main{padding:34px 0 10px}
+h1{font-size:29px;line-height:1.25;margin:0 0 14px}
+h2{font-size:21px;margin:36px 0 12px}h3{font-size:17px;margin:22px 0 8px}
+p{margin:0 0 14px}
+.mu{color:var(--mu);font-size:14px}
+.stamp{color:var(--mu);font-size:13px;margin:0 0 18px}
+.qa{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:16px 20px;margin:20px 0}
+.qa h2{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--acc)}
+.qa ul{margin:0;padding-left:20px}.qa li{margin:6px 0}
+.calc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:560px){.counters{grid-template-columns:1fr 1fr}}
+.mini{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.mini .v{display:block;font-size:24px;font-weight:700;color:var(--acc2);line-height:1.2}
+.mini .k{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:560px){.types{grid-template-columns:1fr 1fr}}
+.types button{background:var(--panel2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:14px 8px;font:inherit;font-size:13px;cursor:pointer;line-height:1.4}
+.types button:hover{border-color:var(--acc)}
+.types button b{display:block;font-size:20px;color:var(--acc);margin-top:4px}
+.types button:active{transform:scale(.97)}
+.row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btn{flex:1;background:var(--panel2);border:1px solid var(--line);color:var(--mu);border-radius:8px;padding:11px;font:inherit;font-size:14px;cursor:pointer;min-width:120px}
+.btn:hover{color:var(--tx);border-color:var(--acc)}
+.bar{height:8px;background:#0a101c;border-radius:99px;overflow:hidden;margin-top:16px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .25s}
+.notice{border:1px solid var(--line);border-left:3px solid var(--acc2);background:var(--panel2);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:14px;color:var(--mu)}
+.notice strong{color:var(--tx)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mu);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr:last-child td{border-bottom:none}
+ol.steps{margin:0 0 14px;padding-left:22px}ol.steps li{margin:8px 0}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:16px}.card p{margin:0 0 10px;font-size:14px;color:var(--mu)}
+.card a{font-size:14px;font-weight:600}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
+details summary{cursor:pointer;font-weight:600;font-size:15px}
+details p{margin:10px 0 0;font-size:15px;color:#c3cfe2}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 34px;font-size:13px;color:var(--mu)}
+footer a{color:var(--mu)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Fortnite Chest Tracker","url":"https://fortniteodds.xyz/fortnite-chest-tracker/","applicationCategory":"GameApplication","operatingSystem":"Any","description":"A free chest counter for Fortnite: tap once per chest you open to track your session, daily and all-time totals.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a Fortnite chest tracker?","acceptedAnswer":{"@type":"Answer","text":"A chest tracker is a counter you tap each time you open a chest, so you can see how many chests you have opened in a session, a day, or the whole season. It does not connect to the game — every count is entered manually by you."}},
+{"@type":"Question","name":"Can a chest tracker read my in-game chest count automatically?","acceptedAnswer":{"@type":"Answer","text":"No. Epic does not expose chest counts through an API, so no website can read them. Any tracker that shows your real in-game total is asking you to type it in. For the official number, open Battle Royale, go to Quests, and scroll to the Treasure Chest Hunt section."}},
+{"@type":"Question","name":"How many chests are on the Fortnite map?","acceptedAnswer":{"@type":"Answer","text":"There are more than 110 Treasure Chest spawn points in Chapter 7 Mini-Season 1, according to a GameRant map survey published November 1, 2026. Each marker covers a cluster of chests rather than a single chest."}},
+{"@type":"Question","name":"Which Fortnite location has the most chests?","acceptedAnswer":{"@type":"Answer","text":"Lantern Landing, with more than 46 Treasure Chest spawns. Arlong Park is the strongest second stop with 39 spawns and sits directly west of Lantern Landing."}},
+{"@type":"Question","name":"How many chests can you open in one Fortnite match?","acceptedAnswer":{"@type":"Answer","text":"A lobby holds 80 players, so you cannot reach all 110 spawn points in one match. With a tight route, 30 chests per match is routine and 50 is possible."}},
+{"@type":"Question","name":"Where can I see how many chests I have opened in Fortnite?","acceptedAnswer":{"@type":"Answer","text":"Open Battle Royale, select the Quests tab, and scroll to the Treasure Chest Hunt section, which lists your opened chests. The counter also appears in the top left corner during a match."}},
+{"@type":"Question","name":"Do all chest types drop the Pirate Token?","acceptedAnswer":{"@type":"Answer","text":"Yes. Epic's published odds apply to every chest opened in a normal match: 1 in 137,500 for Pirate Shop Access, and 1 in 91,667 during Treasure Hours. The chest type changes the loot pool, not the token rate."}}
+]}
+]}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Fortnite<span>Odds</span></div>
+    <nav>
+      <a href="/">Drop rates</a>
+      <a href="/fortnite-treasure-hour/">Treasure Hour</a>
+      <a href="/fortnite-token-chance/">Token calculator</a>
+      <a href="/fortnite-xp-calculator/">XP calculator</a>
+      <a href="/fortnite-chest-tracker/" class="on">Chest tracker</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<h1>Fortnite Chest Tracker: Count Your Chests, Match by Match</h1>
+<p class="stamp">Last updated November 13, 2026 · Chapter 7 Mini-Season 1</p>
+
+<p>This is a <strong>manual chest counter</strong>. Tap a button every time you open a chest and it keeps your session, daily and all-time totals in this browser — no account, no install, nothing uploaded. Under the counter you get the <strong>110+ chest spawn points</strong> broken down by location, the chest types, and the one thing most trackers never explain: where Fortnite shows you the official number.</p>
+
+<div class="qa">
+  <h2>Quick answer</h2>
+  <ul>
+    <li><strong>110+ chest spawn points</strong> on the Chapter 7 mini-season map, each one a cluster.</li>
+    <li><strong>Lantern Landing</strong> has the most, <strong>46+</strong> in one location.</li>
+    <li>A good route opens <strong>30 to 50 chests per match</strong>.</li>
+    <li>Your real in-game total is in <strong>Quests → Treasure Chest Hunt</strong>, not on any website.</li>
+  </ul>
+</div>
+
+<h2>Track your chests</h2>
+
+<div class="calc">
+  <div class="counters">
+    <div class="mini"><span class="v" id="cSession">0</span><span class="k">This session</span></div>
+    <div class="mini"><span class="v" id="cToday">0</span><span class="k">Opened today</span></div>
+    <div class="mini"><span class="v" id="cTotal">0</span><span class="k">All-time</span></div>
+    <div class="mini"><span class="v" id="cBest">0</span><span class="k">Best single day</span></div>
+  </div>
+
+  <div class="types">
+    <button type="button" data-type="standard">Standard chest<b id="tStandard">0</b></button>
+    <button type="button" data-type="rare">Rare chest<b id="tRare">0</b></button>
+    <button type="button" data-type="sprite">Sprite chest<b id="tSprite">0</b></button>
+    <button type="button" data-type="buried">Buried chest<b id="tBuried">0</b></button>
+  </div>
+
+  <div class="bar"><i id="bar"></i></div>
+  <p class="mu" id="milestone">Tap a chest type once for every chest you open. Nothing to install.</p>
+
+  <div class="row">
+    <button type="button" class="btn" id="undo">Undo last</button>
+    <button type="button" class="btn" id="clear">Clear session</button>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>This counter cannot read your game.</strong> Epic does not publish chest counts to websites, so every number here comes from you tapping a button. All data stays in this browser — clearing your browser data erases it.
+</div>
+
+<h2 id="official">Where Fortnite shows your real chest total</h2>
+
+<p>Before you rely on any third-party tracker, know that the game already counts for you. It just does not put the number anywhere obvious.</p>
+
+<ol class="steps">
+  <li>Load up Fortnite and choose <strong>Battle Royale</strong>.</li>
+  <li>Open the <strong>Quests</strong> tab.</li>
+  <li>Scroll to the <strong>Treasure Chest Hunt</strong> section and read the number listed there.</li>
+</ol>
+
+<p>During a match you can also watch the counter in the <strong>top left corner</strong> of the screen, which ticks up as you open chests. That is the only figure Epic actually verifies — use it as your source of truth, and use the counter above for the per-match and per-day splits the game does not show you.</p>
+
+<h2>Chest spawn points by location</h2>
+
+<p>Counts below come from a full map survey of Chapter 7 Mini-Season 1 published by GameRant on November 1, 2026. Each marker stands for a cluster of chestsrather than a
+single chest.</p>
+
+<table>
+<thead><tr><th>Location</th><th>Chest spawns</th><th>Why it is worth landing</th></tr></thead>
+<tbody>
+<tr><td>Lantern Landing</td><td>46+</td><td>Best single stop on the map. Land here first from the Battle Bus.</td></tr>
+<tr><td>Arlong Park</td><td>39</td><td>Directly west of Lantern Landing, so the route costs almost no time.</td></tr>
+<tr><td>Loguetown</td><td>Not surveyed</td><td>Fallback when the first two are contested. Southeast of Arlong Park.</td></tr>
+<tr><td>Cursed Cavern</td><td>Not surveyed</td><td>Buried treasure rather than surface chests. Best as a finisher.</td></tr>
+</tbody>
+</table>
+
+<p class="mu">Only Lantern Landing and Arlong Park have published counts. I am not filling the other two rows with a guess — if a number is not in the survey, it stays blank.</p>
+
+<div class="notice">
+  <strong>Route that actually works:</strong> Lantern Landing → Arlong Park → Loguetown → Cursed Cavern. That is one continuous westward-then-southeast sweep, and it is what turns a 110-spawn map into 30 to 50 chests in a single match.
+</div>
+
+<h2>Chest types and what each one changes</h2>
+
+<table>
+<thead><tr><th>Chest type</th><th>Look</th><th>What is different</th></tr></thead>
+<tbody>
+<tr><td>Standard chest</td><td>Wooden, gold trim</td><td>Baseline loot. Three items, standard weapon pool.</td></tr>
+<tr><td>Rare chest</td><td>Blue glow</td><td>Higher-tier weapons and heals from the same slot.</td></tr>
+<tr><td>Sprite chest</td><td>Seasonal skin</td><td>Adds a Sprite on top of normal loot.</td></tr>
+<tr><td>Buried chest</td><td>Under the ground</td><td>Needs a Treasure Map or a dig; often the bigger reward.</td></tr>
+</tbody>
+</table>
+
+<p>One thing worth stating plainly, because it is the most common misunderstanding in this season: <strong>the type changes the loot pool, not the token rate.</strong> Epic's published odds apply to every chest opened in a normal match — 1 in 137,500 for Pirate Shop Access, and 1 in 91,667 during Treasure Hours. Opening rare chests all night does not move those numbers.</p>
+
+<p>One thing does help: the <strong>Fortune Chester Sprite</strong> has a chance to spawn extra loot from chests and to reveal nearby chests. It is the only in-game item that changes how many chests you find per minute.</p>
+
+<h2>How many chests per match is realistic</h2>
+
+<p>A lobby holds <strong>80 players</strong> on the same 110+ spawn points, so reaching every marker is not a plan. The realistic band:</p>
+
+<table>
+<thead><tr><th>Pace</th><th>Chests per match</th><th>What it looks like</th></tr></thead>
+<tbody>
+<tr><td>Casual drop</td><td>3–8</td><td>One POI, fight whoever lands with you.</td></tr>
+<tr><td>Deliberate route</td><td>30</td><td>Two full POIs without detouring.</td></tr>
+<tr><td>Clean lobby, tight route</td><td>50</td><td>First two POIs uncontested and no third-party fight.</td></tr>
+</tbody>
+</table>
+
+<p>Multiply that out and the tracker starts to mean something. At 30 chests a match, you are looking at roughly <strong>83 matches</strong> to reach the 50% mark for a Pirate Shop Token — which is exactly the kind of arithmetic the counter above is for. Full probability table lives on the <a href="/fortnite-token-chance/">token chance calculator</a>.</p>
+
+<div class="cards">
+  <div class="card">
+    <h3>Pirate Token odds</h3>
+    <p>Official per-chest drop rates, and how many chests you need for 50% and 90%.</p>
+    <a href="/fortnite-token-chance/">Open the calculator →</a>
+  </div>
+  <div class="card">
+    <h3>Treasure Hour times</h3>
+    <p>When the 1.5x multiplier is live in your timezone, every Saturday.</p>
+    <a href="/fortnite-treasure-hour/">See the schedule →</a>
+  </div>
+</div>
+
+<h2>Questions people actually ask</h2>
+
+<details>
+  <summary>What is a Fortnite chest tracker?</summary>
+  <p>A counter you tap each time you open a chest, so you can see how many chests you have opened in a session, a day, or the whole season. It does not connect to the game — every count is entered manually by you.</p>
+</details>
+
+<details>
+  <summary>Can a chest tracker read my in-game chest count automatically?</summary>
+  <p>No. Epic does not expose chest counts through an API, so no website can read them. Any tracker that shows your real in-game total is asking you to type it in. For the official number, open Battle Royale, go to Quests, and scroll to the Treasure Chest Hunt section.</p>
+</details>
+
+<details>
+  <summary>How many chests are on the Fortnite map?</summary>
+  <p>More than 110 Treasure Chest spawn points in Chapter 7 Mini-Season 1, according to a GameRant map survey published November 1, 2026. Each marker covers a cluster of chests rather than a single chest.</p>
+</details>
+
+<details>
+  <summary>Which location has the most chests?</summary>
+  <p>Lantern Landing, with more than 46 Treasure Chest spawns. Arlong Park is the strongest second stop with 39 spawns and sits directly west of Lantern Landing.</p>
+</details>
+
+<details>
+  <summary>How many chests can you open in one match?</summary>
+  <p>A lobby holds 80 players, so you cannot reach all 110 spawn points in one match. With a tight route, 30 chests per match is routine and 50 is possible.</p>
+</details>
+
+<details>
+  <summary>Where can I see how many chests I have opened?</summary>
+  <p>Open Battle Royale, select the Quests tab, and scroll to the Treasure Chest Hunt section, which lists your opened chests. The counter also appears in the top left corner during a match.</p>
+</details>
+
+<details>
+  <summary>Do all chest types drop the Pirate Token?</summary>
+  <p>Yes. Epic's published odds apply to every chest opened in a normal match: 1 in 137,500 for Pirate Shop Access, and 1 in 91,667 during Treasure Hours. The chest type changes the loot pool, not the token rate.</p>
+</details>
+
+<details>
+  <summary>Does this work in Zero Build?</summary>
+  <p>Chests spawn in both Battle Royale and Zero Build, and the spawn points are the same. Your route matters more than the mode.</p>
+</details>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>FortniteOdds is an independent fan resource. Not affiliated with or endorsed by Epic Games. Chest spawn counts sourced from a publicly dated map survey; in-game numbers verified through the Quests tab.</p>
+    <p><a href="/">Drop rates</a> · <a href="/fortnite-treasure-hour/">Treasure Hour</a> · <a href="/fortnite-token-chance/">Token calculator</a> · <a href="/fortnite-xp-calculator/">XP calculator</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='ftnChestTracker.v1';
+  var TYPES=['standard','rare','sprite','buried'];
+  var GOAL=100;
+
+  function todayKey(){
+    var d=new Date();
+    return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  }
+  function blank(){
+    var t={};
+    TYPES.forEach(function(k){t[k]=0});
+    return {total:{},types:t,session:0,today:0,todayKey:todayKey(),best:0,history:[],log:[]};
+  }
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY);
+      if(!raw) return blank();
+      var s=JSON.parse(raw);
+      var b=blank();
+      if(!s||typeof s!=='object') return b;
+      // merge so a stored state from an older version still works
+      s.types=s.types||b.types; s.total=s.total||b.total;
+      s.session=s.session||0; s.today=s.today||0;
+      s.todayKey=s.todayKey||todayKey(); s.best=s.best||0;
+      s.log=s.log||[];
+      if(s.todayKey!==todayKey()){ s.todayKey=todayKey(); s.today=0; }
+      return s;
+    }catch(e){ return blank(); }
+  }
+  function save(s){
+    try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){}
+  }
+
+  var st=load();
+
+  function fmt(n){ return n.toLocaleString('en-US'); }
+
+  function render(){
+    document.getElementById('cSession').textContent=fmt(st.session);
+    document.getElementById('cToday').textContent=fmt(st.today);
+    document.getElementById('cTotal').textContent=fmt(st.totalChests||0);
+    document.getElementById('cBest').textContent=fmt(st.best);
+    TYPES.forEach(function(k){
+      var el=document.getElementById('t'+k.charAt(0).toUpperCase()+k.slice(1));
+      if(el) el.textContent=fmt(st.types[k]||0);
+    });
+    var total=st.totalChests||0;
+    var pct=Math.min(100,Math.round(total/GOAL*100));
+    document.getElementById('bar').style.width=pct+'%';
+    var msg;
+    if(total===0){ msg='Tap a chest type every time you open one in game. Nothing leaves this browser.'; }
+    else if(total<GOAL){ msg=fmt(total)+' chests logged · '+fmt(GOAL-total)+' to the 100-chest milestone'; }
+    else { msg=fmt(total)+' chests logged · milestone cleared. Keep going for the best-day record.'; }
+    document.getElementById('milestone').textContent=msg;
+  }
+
+  function add(type,n){
+    n=n||1;
+    st.types[type]=(st.types[type]||0)+n;
+    st.session+=n;
+    st.today+=n;
+    st.totalChests=(st.totalChests||0)+n;
+    if(st.today>st.best) st.best=st.today;
+    st.log.push({t:type,n:n,at:Date.now()});
+    if(st.log.length>200) st.log.shift();
+    save(st);
+    render();
+  }
+
+  document.querySelectorAll('.types button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      add(btn.getAttribute('data-type'),1);
+    });
+  });
+
+  document.getElementById('undo').addEventListener('click',function(){
+    var last=st.log.pop();
+    if(!last) return;
+    st.types[last.t]=Math.max(0,(st.types[last.t]||0)-last.n);
+    st.session=Math.max(0,st.session-last.n);
+    st.today=Math.max(0,st.today-last.n);
+    st.totalChests=Math.max(0,(st.totalChests||0)-last.n);
+    save(st); render();
+  });
+
+  document.getElementById('clear').addEventListener('click',function(){
+    st.session=0; save(st); render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

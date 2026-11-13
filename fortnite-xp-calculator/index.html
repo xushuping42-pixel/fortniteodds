@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fortnite XP Calculator: XP Per Level &amp; Daily Target (Nov 2026)</title>
+<meta name="description" content="Fortnite XP calculator: enter your level and target to see exactly how much XP is left and how much you need per day before the season ends December 5, 2026. 80,000 XP per level, full table, and XP source comparison.">
+<link rel="canonical" href="https://fortniteodds.xyz/fortnite-xp-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FortniteOdds">
+<meta property="og:url" content="https://fortniteodds.xyz/fortnite-xp-calculator/">
+<meta property="og:title" content="Fortnite XP Calculator: XP Per Level &amp; Daily Target">
+<meta property="og:description" content="See how much XP is left to your target level and how much you need per day before December 5, 2026.">
+<style>
+:root{--bg:#0b1220;--panel:#131c2e;--panel2:#1a2337;--line:#26324a;--tx:#e6edf7;--mu:#93a2bd;--acc:#5eead4;--acc2:#4ade80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:rgba(11,18,32,.92);position:sticky;top:0;z-index:9}
+header .wrap{display:flex;align-items:center;gap:18px;height:56px;flex-wrap:wrap}
+.brand{font-weight:700;letter-spacing:.2px}
+.brand span{color:var(--acc)}
+nav{display:flex;gap:16px;font-size:14px;margin-left:auto;flex-wrap:wrap}
+nav a{color:var(--mu)}
+nav a.on{color:var(--acc);font-weight:600}
+main{padding:36px 0 10px}
+h1{font-size:30px;line-height:1.25;margin:0 0 14px}
+h2{font-size:21px;margin:38px 0 12px}
+h3{font-size:17px;margin:24px 0 8px}
+p{margin:0 0 14px}
+.mu{color:var(--mu);font-size:14px}
+.stamp{color:var(--mu);font-size:13px;margin:0 0 18px}
+.qa{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:16px 20px;margin:20px 0}
+.qa h2{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--acc)}
+.qa ul{margin:0;padding-left:20px}
+.qa li{margin:6px 0}
+.calc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:13px;color:var(--mu);margin-bottom:6px}
+.field input,.field select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:10px 12px;font-size:16px;font-family:inherit}
+.field input:focus,.field select:focus{outline:none;border-color:var(--acc)}
+.result{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:18px;text-align:center}
+.result .big{display:block;font-size:34px;font-weight:700;color:var(--acc);line-height:1.15;margin:4px 0}
+.result .lbl{font-size:13px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.result .sub{display:block;font-size:14px;color:var(--mu);margin-top:6px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:560px){.split{grid-template-columns:1fr}}
+.mini{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.mini .v{display:block;font-size:22px;font-weight:700;color:var(--acc2)}
+.mini .k{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.bar{height:8px;background:#0a101c;border-radius:99px;overflow:hidden;margin-top:16px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .25s}
+.notice{border:1px solid var(--line);border-left:3px solid var(--acc2);background:var(--panel2);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:14px;color:var(--mu)}
+.notice strong{color:var(--tx)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--mu);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr:last-child td{border-bottom:none}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0 0 10px;font-size:14px;color:var(--mu)}
+.card a{font-size:14px;font-weight:600}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 34px;font-size:13px;color:var(--mu)}
+footer a{color:var(--mu)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much XP is one level in Fortnite?","acceptedAnswer":{"@type":"Answer","text":"80,000 XP per level. The requirement stays at 80,000 from level 1 all the way past level 100, so it never becomes cheaper or more expensive inside a season."}},
+{"@type":"Question","name":"How much XP does it take to reach level 100?","acceptedAnswer":{"@type":"Answer","text":"7,920,000 XP from level 1. That is 99 level-ups at 80,000 XP each. From level 50 you need 3,920,000 XP; from level 80 you need 1,520,000 XP."}},
+{"@type":"Question","name":"Is 80,000 XP per level an official Epic number?","acceptedAnswer":{"@type":"Answer","text":"Epic does not publish a per-level XP table. The 80,000 figure comes from community testing and matches across the independent level-table trackers that update each season. Treat it as the working number, not an official document."}},
+{"@type":"Question","name":"How much XP do I need per day to reach level 100 before the season ends?","acceptedAnswer":{"@type":"Answer","text":"Divide the XP you still need by the days left. The season ends December 5, 2026; from November 13 that is 22 days. From level 50 to level 100 that is 3,920,000 XP, or about 178,000 XP a day."}},
+{"@type":"Question","name":"Does the XP per level change after level 100?","acceptedAnswer":{"@type":"Answer","text":"No. Past level 100 every level still costs 80,000 XP, so reaching level 200 costs 15,920,000 XP in total. Levels above 100 give cosmetic rewards rather than battle pass tiers."}},
+{"@type":"Question","name":"Do XP maps count toward battle pass levels?","acceptedAnswer":{"@type":"Answer","text":"Yes. Creative XP counts toward your season level, which is what unlocks battle pass rewards. Creative has a weekly XP cap that Epic sets each season, so a map can only add a limited slice before the progress bar stops moving."}},
+{"@type":"Question","name":"How many levels is 1,000,000 XP in Fortnite?","acceptedAnswer":{"@type":"Answer","text":"12.5 levels, because one level is 80,000 XP. 1,000,000 divided by 80,000 is 12.5."}},
+{"@type":"Question","name":"What is the fastest way to earn XP right now?","acceptedAnswer":{"@type":"Answer","text":"Quests pay the most XP per minute, Creative fills the gap up to its weekly cap, and normal matches give steady XP for surviving and opening chests. Check the Treasure Hour schedule before grinding chests, because the chest multiplier pays out faster inside those two-hour windows."}}
+]}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Fortnite<span>Odds</span></div>
+    <nav>
+      <a href="/">Drop rates</a>
+      <a href="/fortnite-treasure-hour/">Treasure Hour</a>
+      <a href="/fortnite-token-chance/">Token calculator</a>
+      <a href="/fortnite-xp-calculator/" class="on">XP calculator</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<h1>Fortnite XP Calculator: How Much XP You Still Need</h1>
+
+<p class="stamp">Last updated November 13, 2026 · Season ends December 5, 2026</p>
+
+<p>One level costs <strong>80,000 XP</strong>. That single number answers almost every levelling question — and it is why this calculator only asks four things: your level, the XP already banked toward the next level, the level you want, and how many days you have left before the season ends on <strong>December 5, 2026</strong>.</p>
+
+<div class="qa">
+  <h2>Quick answer</h2>
+  <ul>
+    <li><strong>80,000 XP per level</strong>, unchanged from level 1 to past 100.</li>
+    <li><strong>7,920,000 XP</strong> to go from level 1 to level 100 (99 level-ups).</li>
+    <li>The season ends <strong>December 5, 2026</strong> — <strong>22 days</strong> from November 13.</li>
+    <li>From level 50 to 100 that is 3,920,000 XP, or about <strong>178,000 XP a day</strong> for the rest of the season.</li>
+  </ul>
+</div>
+
+<h2 id="calculator">Calculate your remaining XP</h2>
+
+<div class="calc">
+  <div class="grid">
+    <div class="field">
+      <label for="curLevel">Current level</label>
+      <input id="curLevel" type="number" min="1" max="500" step="1" value="40" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="curXp">XP already earned toward the next level</label>
+      <input id="curXp" type="number" min="0" max="79999" step="1000" value="0" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="targetLevel">Target level</label>
+      <input id="targetLevel" type="number" min="1" max="500" step="1" value="100" inputmode="numeric">
+    </div>
+    <div class="field">
+      <label for="daysLeft">Days left in the season</label>
+      <input id="daysLeft" type="number" min="1" max="60" step="1" value="22" inputmode="numeric">
+    </div>
+  </div>
+
+  <div class="result" aria-live="polite">
+    <span class="lbl">XP still needed</span>
+    <strong class="big" id="leftXp">—</strong>
+    <span class="sub" id="leftDetail"></span>
+    <div class="bar"><i id="bar"></i></div>
+  </div>
+
+  <div class="split">
+    <div class="mini">
+      <span class="v" id="perDay">—</span>
+      <span class="k">XP per day</span>
+    </div>
+    <div class="mini">
+      <span class="v" id="perDayLvl">—</span>
+      <span class="k">Levels per day</span>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:18px">
+    <label for="ratePerDay">Optional: XP you actually earn per day</label>
+    <input id="ratePerDay" type="number" min="0" max="2000000" step="5000" value="100000" inputmode="numeric">
+  </div>
+  <div class="notice" id="projection"></div>
+</div>
+
+<p class="mu">The level, target and days fields are yours to set. The "XP per day" figure is a flat average — it does not know which days you actually play.</p>
+
+<h2>XP per level table</h2>
+
+<p>Level cost never changes as you climb. Every row uses the same 80,000 XP; the last column is what it adds up to when you start from level 1.</p>
+
+<table>
+<thead><tr><th>Reaching</th><th>XP per level</th><th>Total XP from level 1</th></tr></thead>
+<tbody>
+<tr><td>Level 10</td><td>80,000</td><td>720,000</td></tr>
+<tr><td>Level 25</td><td>80,000</td><td>1,920,000</td></tr>
+<tr><td>Level 40</td><td>80,000</td><td>3,120,000</td></tr>
+<tr><td>Level 50</td><td>80,000</td><td>3,920,000</td></tr>
+<tr><td>Level 75</td><td>80,000</td><td>5,920,000</td></tr>
+<tr><td>Level 100</td><td>80,000</td><td>7,920,000</td></tr>
+<tr><td>Level 150</td><td>80,000</td><td>11,920,000</td></tr>
+<tr><td>Level 200</td><td>80,000</td><td>15,920,000</td></tr>
+</tbody>
+</table>
+
+<p class="mu">Cross-checked against two independent level-table trackers on November 13, 2026; both list 80,000 XP per level with no tiering after level 100. Epic itself does not publish a per-level table, so treat this as the community-verified working number rather than an official document.</p>
+
+<h2>How the calculation works</h2>
+
+<p>Two lines of arithmetic, nothing hidden:</p>
+
+<p><strong>XP still needed = (target level − current level) × 80,000 − XP already banked toward the next level</strong></p>
+
+<p><strong>XP per day = XP still needed ÷ days left in the season</strong></p>
+
+<p>That is it. If you are level 40 with 0 XP banked and want level 100 in 22 days: 60 levels × 80,000 = 4,800,000 XP, divided by 22 days = 218,000 XP a day. The calculator does the same thing for whatever numbers you type.</p>
+
+<h2>Where your XP actually comes from</h2>
+
+<p>Knowing the total is half the job; the other half is knowing which activity pays it fastest. Ranked by XP per minute, roughly:</p>
+
+<table>
+<thead><tr><th>Source</th><th>Pace</th><th>Limit</th></tr></thead>
+<tbody>
+<tr><td>Daily, weekly and story quests</td><td>Fastest</td><td>None, but each quest pays once</td></tr>
+<tr><td>Creative / XP maps</td><td>Fast while it lasts</td><td>Weekly cap (community-reported at 60 levels, roughly 4.8M XP)</td></tr>
+<tr><td>Normal Battle Royale matches</tr><td>Steady, slowest</td><td>None</td></tr>
+<tr><td>Chests and chest multipliers</td><td>Bursty</td><td>Best inside Treasure Hour windows</td></tr>
+</tbody>
+</table>
+
+<p>Quests win on pace, Creative wins on convenience, and normal matches fill whatever is left. The trap most players fall into is grinding a single source: Creative alone caps out well before level 100, and matches alone take far longer than 22 days.</p>
+
+<p>One more thing worth checking before you plan a chest grind: chests pay noticeably more inside <a href="/fortnite-treasure-hour/">Treasure Hour</a>, which runs in two-hour blocks on Saturdays. If you are close to your daily target, moving your play session into one of those windows is the cheapest XP you will find all week. The Treasure Hour page has the next times converted to your timezone.</p>
+
+<h2>XP needed for common level goals</h2>
+
+<p>Same numbers, expressed as the goal people usually type into Google:</p>
+
+<table>
+<thead><tr><th>Goal</th><th>XP needed from level 1</th><th>XP per day over 22 days</th></tr></thead>
+<tbody>
+<tr><td>Level 50</td><td>3,920,000</td><td>178,000</td></tr>
+<tr><td>Level 100</td><td>7,920,000</td><td>360,000</td></tr>
+<tr><td>Level 100 from level 50</td><td>3,920,000</td><td>178,000</td></tr>
+<tr><td>Level 150</td><td>11,920,000</td><td>542,000</td></tr>
+<tr><td>Level 200</td><td>15,920,000</td><td>724,000</td></tr>
+</tbody>
+</table>
+
+<p class="mu">Level 100 is the ceiling that unlocks the full battle pass reward track; everything past it is bonus cosmetics. If you are going for 100 and the daily number above looks unmanageable, the honest fix is a lower target, not a faster grind.</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>How much XP is one level in Fortnite?</h3>
+<p>80,000 XP. It does not scale — level 2 costs the same as level 99. That flat rate is what makes planning possible at all: multiply the levels you want by 80,000 and you have your answer.</p>
+
+<h3>Is 80,000 XP per level an official Epic number?</h3>
+<p>No, and it is worth being direct about that. Epic does not publish a per-level XP table. The figure comes from community testing and is consistent across the independent trackers that rebuild their tables every season. It is reliable enough to plan around, but it is not a document Epic handed out.</p>
+
+<h3>How many levels is 1,000,000 XP?</h3>
+<p>12.5 levels. 1,000,000 ÷ 80,000 = 12.5. Useful shorthand: 800,000 XP is 10 levels, 4,000,000 XP is 50 levels.</p>
+
+<h3>Do XP maps count toward battle pass levels?</h3>
+<p>Yes. Creative XP feeds the same season level that unlocks battle pass rewards, so an XP map is a legitimate route. The catch is the weekly cap — once you hit it, the map keeps running but the bar stops moving. Community reports put the Chapter 7 cap at 60 levels a week, though Epic adjusts it between seasons.</p>
+
+<h3>Does the XP requirement change after level 100?</h3>
+<p>No. Every level past 100 still costs 80,000 XP. Level 200 is 15,920,000 XP from a standing start, which is why very few players finish a season above 150.</p>
+
+<h3>How much XP do I need per day to reach level 100?</h3>
+<p>From level 1 with 22 days left, 360,000 XP a day. From a realistic mid-season position like level 50, it is 178,000 a day. Set your own numbers in the calculator above — the answer changes a lot with your starting level, and the flat average it returns is the number to beat.</p>
+
+<h2>Other tools on this site</h2>
+
+<div class="cards">
+  <div class="card">
+    <h3>Pirate Token Chance Calculator</h3>
+    <p>Official drop rates and a real probability calculator for Pirate Shop Access and the other token rewards.</p>
+    <a href="/fortnite-token-chance/">Open the calculator &rarr;</a>
+  </div>
+  <div class="card">
+    <h3>Treasure Hour Times</h3>
+    <p>The next Treasure Hour converted to your timezone, plus the multiplier list and what each reward jumps to.</p>
+    <a href="/fortnite-treasure-hour/">See the schedule &rarr;</a>
+  </div>
+  <div class="card">
+    <h3>Chest Tracker</h3>
+    <p>Count chests per match and see where the spawns cluster — coming to this site next.</p>
+    <a href="/">Back to drop rates &rarr;</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>FortniteOdds &middot; Independent fan site, not affiliated with or endorsed by Epic Games. All drop rates quoted are Epic's own published figures; XP per level is community-verified, not official.</p>
+    <p><a href="/">Drop rates</a> &middot; <a href="/fortnite-token-chance/">Token calculator</a> &middot; <a href="/fortnite-treasure-hour/">Treasure Hour</a> &middot; <a href="/fortnite-xp-calculator/">XP calculator</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var XP_PER_LEVEL = 80000;
+  var curLevel = document.getElementById('curLevel'),
+      curXp    = document.getElementById('curXp'),
+      target   = document.getElementById('targetLevel'),
+      days     = document.getElementById('daysLeft'),
+      rate     = document.getElementById('ratePerDay'),
+      leftXp   = document.getElementById('leftXp'),
+      leftDet  = document.getElementById('leftDetail'),
+      bar      = document.getElementById('bar'),
+      perDay   = document.getElementById('perDay'),
+      perLvl   = document.getElementById('perDayLvl'),
+      proj     = document.getElementById('projection');
+
+  function fmt(n){
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  function clamp(s,min,max){
+    var n = parseInt(s.value,10);
+    if (isNaN(n)) n = min;
+    if (n < min) n = min;
+    if (n > max) n = max;
+    return n;
+  }
+
+  function recalc(){
+    var lv   = clamp(curLevel,1,500),
+        bank = clamp(curXp,0,79999),
+        tg   = clamp(target,1,500),
+        dy   = clamp(days,1,60);
+
+    var levelsLeft = tg - lv;
+    var need = levelsLeft > 0 ? levelsLeft * XP_PER_LEVEL - bank : 0;
+
+    if (levelsLeft <= 0){
+      leftXp.textContent = '0';
+      leftDet.textContent = 'You are already at or past level ' + tg + '.';
+      bar.style.width = '100%';
+      perDay.textContent = '0';
+      perLvl.textContent = '0';
+    } else {
+      leftXp.textContent = fmt(need) + ' XP';
+      leftDet.textContent = 'Level ' + lv + ' to level ' + tg + ' — ' + levelsLeft + ' level' + (levelsLeft === 1 ? '' : 's') + ' left.';
+      var total = levelsLeft * XP_PER_LEVEL;
+      var pct = total > 0 ? ((total - need) / total) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, pct)).toFixed(1) + '%';
+      var pd = need / dy;
+      perDay.textContent = fmt(pd);
+      perLvl.textContent = (pd / XP_PER_LEVEL).toFixed(2);
+    }
+
+    var r = clamp(rate,0,2000000);
+    if (levelsLeft <= 0){
+      proj.innerHTML = 'Target already reached — set a higher target level to plan further.';
+    } else if (r <= 0){
+      proj.innerHTML = 'Enter your actual XP per day to see whether the pace works.';
+    } else {
+      var need2 = levelsLeft * XP_PER_LEVEL - bank;
+      var daysNeeded = need2 / r;
+      if (daysNeeded <= dy){
+        proj.innerHTML = '<strong>On pace.</strong> At ' + fmt(r) + ' XP a day you reach level ' + tg + ' in about ' + daysNeeded.toFixed(1) + ' days, with ' + (dy - daysNeeded).toFixed(1) + ' days to spare.';
+      } else {
+        var shortfall = need2 - r * dy;
+        proj.innerHTML = '<strong>Short by ' + fmt(shortfall) + ' XP.</strong> At ' + fmt(r) + ' XP a day you finish the season around level ' + (lv + Math.floor((bank + r * dy) / XP_PER_LEVEL)) + '. Raise the daily rate or lower the target.';
+      }
+    }
+  }
+
+  [curLevel, curXp, target, days, rate].forEach(function(el){
+    el.addEventListener('input', recalc);
+    el.addEventListener('change', recalc);
+  });
+
+  recalc();
+})();
+</script>
+
+</body>
+</html>
