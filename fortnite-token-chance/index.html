@@ -290,7 +290,7 @@ header nav a.on{color:var(--accent);font-weight:600}
 </div>
 <div class="field">
 <label for="days">Days you will keep playing (season ends Dec 5)</label>
-<input id="days" type="number" min="0" max="365" step="1" value="22" inputmode="numeric">
+<input id="days" type="number" min="0" max="365" step="1" inputmode="numeric">
 </div>
 <div class="field">
 <label for="mode">Drop rate to use</label>
@@ -337,7 +337,7 @@ header nav a.on{color:var(--accent);font-weight:600}
 <tr><td>Treasure Hour, 2x</td><td>1 in 68,750</td><td>~47,650</td><td>~158,300</td></tr>
 </tbody>
 </table>
-<p><a href="/fortnite-treasure-hour/">See the next Treasure Hour in your timezone →</a> The next window is Saturday, November 14, 2026 at 2:00–4:00 PM ET and 9:00–11:00 PM ET, both 2 hours long. Unless Epic announces otherwise, plan on <strong>1.5x</strong>.</p>
+<p><a href="/fortnite-treasure-hour/">See the next Treasure Hour in your timezone →</a> The next window is Saturday, November 21, 2026 at 2:00–4:00 PM ET and 9:00–11:00 PM ET, pending Epic confirmation.</p>
 
 <h2>Pirate token odds: what the formula is doing</h2>
 <p>The chance of at least one drop from n chests is the complement of missing every time:</p>
@@ -384,6 +384,12 @@ header nav a.on{color:var(--accent);font-weight:600}
       d=document.getElementById('days'),s=document.getElementById('mode'),
       pct=document.getElementById('pct'),detail=document.getElementById('detail'),
       gap=document.getElementById('gap');
+  function remainingDays(){
+    var now = new Date();
+    return Math.max(0, Math.round((Date.UTC(2026,11,5) -
+      Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())) / 86400000));
+  }
+  d.value = remainingDays();
   function fmtNum(n){return Math.round(n).toLocaleString('en-US')}
   function fmtPct(p){
     var v=p*100;

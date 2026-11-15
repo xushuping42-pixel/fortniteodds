@@ -280,6 +280,19 @@ header nav a.on{color:var(--accent);font-weight:600}
 </ul>
 </div>
 
+<section aria-labelledby="countdown-heading" id="treasure-countdown" hidden>
+<h2 id="countdown-heading">Countdown to the next expected window</h2>
+<p>Expected start: Saturday, November 21, 2026 at 2:00 PM ET (19:00 UTC), pending Epic confirmation.</p>
+<p id="visitor-timezone"></p>
+<div class="countdown" role="timer" aria-label="Time until the expected Treasure Hour">
+  <div class="countdown-unit"><b id="countdown-days">00</b><span>Days</span></div>
+  <div class="countdown-unit"><b id="countdown-hours">00</b><span>Hours</span></div>
+  <div class="countdown-unit"><b id="countdown-minutes">00</b><span>Minutes</span></div>
+  <div class="countdown-unit"><b id="countdown-seconds">00</b><span>Seconds</span></div>
+</div>
+<p id="countdown-status" role="status"></p>
+</section>
+
 <h2>Treasure Hour times in your time zone</h2>
 <table>
 <thead><tr><th>Region</th><th>Window 1</th><th>Window 2</th></tr></thead>
@@ -353,5 +366,34 @@ header nav a.on{color:var(--accent);font-weight:600}
 </footer>
 
 </div>
+<script>
+(function(){
+  var target = Date.parse('2026-11-21T14:00:00-05:00');
+  var end = target + 2 * 60 * 60 * 1000;
+  var zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  var localStart = new Intl.DateTimeFormat(undefined, {
+    timeZone: zone, weekday: 'long', year: 'numeric', month: 'long',
+    day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+  }).format(new Date(target));
+  document.getElementById('visitor-timezone').textContent =
+    'Your time zone: ' + zone + '. Expected local start: ' + localStart + '.';
+  function tick(){
+    var now = Date.now();
+    var seconds = Math.max(0, Math.ceil((target - now) / 1000));
+    var values = [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24,
+      Math.floor(seconds / 60) % 60, seconds % 60];
+    ['days','hours','minutes','seconds'].forEach(function(unit, i){
+      document.getElementById('countdown-' + unit).textContent = String(values[i]).padStart(2, '0');
+    });
+    document.getElementById('countdown-status').textContent = now < target
+      ? 'Counting down to the expected November 21 window; pending Epic confirmation.'
+      : now < end ? 'The expected window has started. Check Fortnite for live confirmation.'
+      : 'This expected window has ended. Check the schedule for later sessions.';
+  }
+  tick();
+  document.getElementById('treasure-countdown').hidden = false;
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
